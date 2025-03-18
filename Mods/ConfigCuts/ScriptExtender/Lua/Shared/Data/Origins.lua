@@ -10,6 +10,7 @@ Data.Origins = {
             "30819c8d-b39d-42e7-acd1-2a8c2c309994",
             "5a60943f-979b-4120-9b60-9e9b29529402",
         },
+        TalkToDialogID = "Astarion_InParty_53aba16e-55bb-a0fc-a444-522e237dbe46", --Database 'DB_OriginInPartyDialog' (CHARACTER, DIALOGRESOURCE):
     },
     Gale = {
         Uuid = "ad9af97d-75da-406a-ae13-7071c563f604",
@@ -21,6 +22,7 @@ Data.Origins = {
             "e008e20d-d642-42ed-9008-297b6273aa21",
             "60e14eb3-cce6-43c3-b893-b9b687e3d88f",
         },
+        TalkToDialogID = "Gale_InParty_6beb1b10-845f-49fa-6d6d-f425eaa42574",
     },
     Halsin = {
         Uuid = "7628bc0e-52b8-42a7-856a-13a6fd413323",
@@ -31,12 +33,14 @@ Data.Origins = {
             "7b53fe60-bb16-48a9-ae5c-9bce1dfac1a9",
             "ee6b727d-243e-4189-b572-1d782ea78df8",
         },
+        TalkToDialogID = "Halsin_InParty_890c2586-6b71-ca01-5bd6-19d533181c71",
     },
     Jaheira = {
         Uuid = "91b6b200-7d00-4d62-8dc9-99e8339dfa1a",
         DisplayHandle = "h0223790egb879g4d5dg87eag2ded4ff2feae",
         -- No relationship flag
         -- No lover flag
+        TalkToDialogID = "Jaheira_InParty_e97481ba-961c-50a7-c54f-d34d6b75044d",
     },
     Karlach = {
         Uuid = "2c76687d-93a2-477b-8b18-8a14b549304c",
@@ -48,6 +52,7 @@ Data.Origins = {
             "d9ff60fa-0af9-45d7-99b4-bd7c3f80ed12",
             "48f2a4d4-23f4-4514-b894-e225152d7a48",
         },
+        TalkToDialogID = "Karlach_InParty_12459660-b66e-9b0b-9963-670e0993543d",
     },
     Laezel = {
         Uuid = "58a69333-40bf-8358-1d17-fff240d7fb12",
@@ -59,12 +64,14 @@ Data.Origins = {
             "d169a786-6e56-4f0d-a2eb-33c48d8d1160",
             "6d402d9b-7af9-43ea-b0eb-98e9612dde27",
         },
+        TalkToDialogID = "Laezel_InParty_93bf58f5-5111-9730-1ee2-62dfb0b00c96",
     },
     Minsc = {
         Uuid = "0de603c5-42e2-4811-9dad-f652de080eba",
         DisplayHandle = "hcf282116g50dcg4e58ga995g638d7ae08e7e",
         -- No relationship flag
         -- No lover flag
+        TalkToDialogID = "Minsc_InParty_d0554ced-ca60-938b-362c-07b0c77610d7",
     },
     Minthara = {
         Uuid = "25721313-0c15-4935-8176-9f134385451b",
@@ -76,6 +83,7 @@ Data.Origins = {
             "39ac48fa-b440-47e6-a436-6dc9b10058d8",
             "8d0460d6-b00a-4947-bbd0-ad0c085a530f",
         },
+        TalkToDialogID = "Minthara_InParty_13d72d55-0d47-c280-9e9c-da076d8876d8",
     },
     Shadowheart = {
         Uuid = "3ed74f06-3c60-42dc-83f6-f034cb47c679",
@@ -87,6 +95,7 @@ Data.Origins = {
             "3808ae35-ad4e-465b-800b-63d32b77211e",
             "542e6cf4-bfd1-471d-b4b5-693d630376cb",
         },
+        TalkToDialogID = "ShadowHeart_InParty_95ca3833-09d0-5772-b16a-c7a5e9208fe5",
     },
     Wyll = {
         Uuid = "c774d764-4a17-48dc-b470-32ace9ce447d",
@@ -98,6 +107,7 @@ Data.Origins = {
             "5db4c1b6-3c42-43ae-aa85-1844acbf5a1d",
             "2652ff35-a62d-4947-b14b-11050ccfd329",
         },
+        TalkToDialogID = "Wyll_InParty_6dff0a1f-1a51-725d-6e9a-52b5742ba9e6",
     }
 }
 Data.OriginDataByUuid = {

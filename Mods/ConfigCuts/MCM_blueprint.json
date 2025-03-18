@@ -1,0 +1,14 @@
+{
+    "SchemaVersion": 1,
+    "ModName": "Configurable Cutscenes",
+    "Tabs": [
+        {
+            "TabId": "configCuts",
+            "TabName": "Configurable Cutscenes",
+            "Handles": {
+                "NameHandle": "hc069c9523b87407cb6162fd0c8901b161c36"
+            }
+        }
+    ],
+    "Optional": true
+}
