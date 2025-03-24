@@ -11,33 +11,24 @@ Ext.RegisterConsoleCommand("csv", function(cmd, arg)
     end
 end)
 
+---@class CSVFile
+---@field Headers string[] # top row of CSV file, column headers (required)
+---@field Rows table<string, string>[] # top to bottom array of each row, with key-value pairs for each column
+
+---Parses from a CSV file and returns a table of headers and rows, column headers, and line count
+---@param filePath string # eg. - "Mods/ConfigCuts/ScriptExtender/Lua/Shared/Data/testData.csv"
+---@return CSVFile?
+---@return integer? # line count, including header row
 function Helpers.CSV.ParseFromFile(filePath)
     filePath = filePath or "Mods/ConfigCuts/ScriptExtender/Lua/Shared/Data/testData.csv"
     local success, data = pcall(Ext.IO.LoadFile, filePath, "data")
     if success and data ~= nil then
-        local parsed = {}
+        local parsed = {
+            Headers = {},
+            Rows = {}
+        }
         local columnCount = 0
         local columns = {}
-        -- create column matcher based on header for number of columns, to parse following rows
-        local matcher
-        -- grab header columns first from whole first line
-        for line in string.gmatch(data, "(.-)\n") do
-            -- first line, iterate in chunks separated by commas
-            for column in string.gmatch(line, "(.-),") do
-                if not matcher then
-                    matcher = "%s*(.-)" -- init first
-                else
-                    matcher = matcher..",%s*(.-)"
-                end
-                columnCount = columnCount + 1
-                table.insert(columns, column)
-            end
-            -- finish matcher and bail
-            matcher = matcher.."%s*$"
-            break
-        end
-        parsed.Headers = columns
-        parsed.Rows = {}
 
         -- Parse an individual row (with variable number of columns depending on file)
         local function rowParse(...)
@@ -48,19 +39,33 @@ function Helpers.CSV.ParseFromFile(filePath)
             table.insert(parsed.Rows, newRowEntry)
         end
 
+        -- create column matcher based on header for number of columns, to parse following rows
+        local matcher
         local lineCount
         for line in string.gmatch(data, "(.-)\n") do
             if not lineCount then
-                -- skip header row and initialize line count
+                -- first row is header, initialize line count, and create matcher based on headers
                 lineCount = 1
+                for column in string.gmatch(line, "(.-),") do
+                    if not matcher then
+                        matcher = "%s*(.-)" -- init first
+                    else
+                        matcher = matcher..",%s*(.-)"
+                    end
+                    columnCount = columnCount + 1
+                    table.insert(columns, column)
+                end
+                -- finish matcher and assign columns to parsed
+                matcher = matcher.."%s*$"
+                parsed.Headers = columns
             else
                 -- Parse all non-header lines
                 lineCount = lineCount + 1
                 rowParse(string.match(line, matcher))
             end
         end
-        RPrint(parsed)
-        return parsed,columns,lineCount
+        -- RPrint(parsed)
+        return parsed,lineCount
     else
         SDebug("Failed to load file: " .. filePath)
     end

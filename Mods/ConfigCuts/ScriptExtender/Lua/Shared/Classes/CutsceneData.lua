@@ -8,6 +8,7 @@ CutsceneActionType = {
     TagClear = "TagClear",
     SetRomance = "SetRomance",
     StartDialog = "StartDialog",
+    ForceStopDialog = "ForceStopDialog",
     -- "RevertRomance", -- TODO
 }
 
@@ -106,3 +107,12 @@ function CutsceneStartDialog:Init()
     self.Char5 = self.Char5 or OSINULL
     self.Char6 = self.Char6 or OSINULL
 end
+
+---@class CutsceneForceStopDialog:CutsceneData
+---@field DialogID DIALOGRESOURCE
+---@field Character Guid
+CutsceneForceStopDialog = CutsceneData:New({
+    Type = CutsceneActionType.ForceStopDialog,
+    DialogID = NULLUUID,
+    Character = NULLUUID,
+})

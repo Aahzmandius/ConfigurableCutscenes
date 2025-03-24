@@ -58,22 +58,37 @@ CutsceneAction = {
         end
     end,
     StartDialog = function(dialogID, char1, char2, char3, char4, char5, char6)
+        local chars = {}
+        if char1 ~= OSINULL and char1 ~= NULLUUID then table.insert(chars, char1) end
+        if char2 ~= OSINULL and char2 ~= NULLUUID then table.insert(chars, char2) end
+        if char3 ~= OSINULL and char3 ~= NULLUUID then table.insert(chars, char3) end
+        if char4 ~= OSINULL and char4 ~= NULLUUID then table.insert(chars, char4) end
+        if char5 ~= OSINULL and char5 ~= NULLUUID then table.insert(chars, char5) end
+        if char6 ~= OSINULL and char6 ~= NULLUUID then table.insert(chars, char6) end
         if debug then
-            local chars = {}
-            if char1 ~= OSINULL then table.insert(chars, char1) end
-            if char2 ~= OSINULL then table.insert(chars, char2) end
-            if char3 ~= OSINULL then table.insert(chars, char3) end
-            if char4 ~= OSINULL then table.insert(chars, char4) end
-            if char5 ~= OSINULL then table.insert(chars, char5) end
-            if char6 ~= OSINULL then table.insert(chars, char6) end
             local speakers = ""
             for i, speaker in ipairs(chars) do
                 speakers = speakers..(("\n   %s. %s (%s)"):format(tostring(i), Helpers.Format.GetDisplayName(speaker), speaker))
             end
             SDebug("  DialogID: %s, Speakers: %s", dialogID, speakers)
         end
-        Osi.QRY_StartDialogCustom_Fixed(dialogID , char1, char2, char3, char4, char5, char6, 1, 1, -1, 1 )
+        if #chars == 1 then
+            Osi.QRY_StartDialogCustom_Fixed(dialogID , char1, 1, 1, -1, 1 )
+        elseif #chars == 2 then
+            Osi.QRY_StartDialogCustom_Fixed(dialogID , char1, char2, 1, 1, -1, 1 )
+        elseif #chars == 3 then
+            Osi.QRY_StartDialogCustom_Fixed(dialogID , char1, char2, char3, 1, 1, -1, 1 )
+        elseif #chars == 4 then
+            Osi.QRY_StartDialogCustom_Fixed(dialogID , char1, char2, char3, char4, 1, 1, -1, 1 )
+        elseif #chars == 5 then
+            Osi.QRY_StartDialogCustom_Fixed(dialogID , char1, char2, char3, char4, char5, 1, 1, -1, 1 )
+        elseif #chars == 6 then
+            Osi.QRY_StartDialogCustom_Fixed(dialogID , char1, char2, char3, char4, char5, char6, 1, 1, -1, 1 )
+        end
     end,
+    ForceStopDialog = function(dialogID, characterGuid)
+        Osi.PROC_ForceStopSpecificDialog(characterGuid, dialogID)
+    end
     -- RevertRomance = function()
         -- --PROC_ORI_ClearPartnersIfAvatar(CHARACTER)
         -- --PROC_ORI_ClearPartnersIfCompanion(CHARACTER)
@@ -114,5 +129,8 @@ function CutsceneAction:Execute(data)
     elseif data.Type == CutsceneActionType.StartDialog then
         ---@cast data CutsceneStartDialog
         self.StartDialog(data.DialogID, data.Char1, data.Char2, data.Char3, data.Char4, data.Char5, data.Char6)
+    elseif data.Type == CutsceneActionType.ForceStopDialog then
+        ---@cast data CutsceneForceStopDialog
+        self.ForceStopDialog(data.DialogID, data.Character)
     end
 end
