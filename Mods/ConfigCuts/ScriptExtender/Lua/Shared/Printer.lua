@@ -244,6 +244,7 @@ function SDumpS(...) SimplePrint:SetFontColor(164, 236, 191) SimplePrint:Dump(..
 function SDumpArray(...) SimplePrint:DumpArray(...) end
 
 function RPrint(...) SimplePrint:RunningRainbowPrint(..., 12, false) end
+function RPrintM(...) SimplePrint:RunningRainbowPrint(..., 3, false) end
 function RPrintS(...) SimplePrint:RunningRainbowPrint(..., 1, false) end
 -- local printcolor    = rgb(58, 255, 189)
 -- local testcolor     = rgb(212, 196, 49)
